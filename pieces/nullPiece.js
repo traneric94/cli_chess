@@ -1,14 +1,16 @@
-import Piece from 'piece.js';
-class NullPiece extends Piece {
-  constructor() {
+import Piece from './piece.js';
+export default class NullPiece extends Piece {
+  constructor(board) {
     if (!NullPiece.instance) {
-      this.symbol = " "
+      super(board);
+      this.symbol = " x "
       this.color = null
       NullPiece.instance = this;
     }
     return NullPiece.instance;
   }
 
+  toString = () => this.symbol
   isEmpty = () => true;
   possibleMoves = () => [];
 }

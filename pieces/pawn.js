@@ -1,7 +1,7 @@
-import Piece from 'pawn.js';
+import Piece from './piece.js';
 
-class Pawn extends Piece {
-  symbol = () => '♟'; //TODO color
+export default class Pawn extends Piece {
+  symbol = ' ♟ '; 
   moves = () => forwardSteps() + sideAttacks();
   direction = () => this.color == white ? -1 : 1;
 

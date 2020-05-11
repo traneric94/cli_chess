@@ -12,36 +12,36 @@ class Game {
     this.currentPlayer = 'white';
   }
 
-  play = () => {
+  play = async () => {
     let i = 2;
     while (i > 0) { //until checkmate
+      //prompt move
+      //const result = await this.promptNextMove();
       // make move
       // move piece
       // swap turn
-      swapTurn();
+      this.swapTurn();
       // notify players
-      console.log(`okay, ${i}`)
+      console.log(this.board.toString());
       //
+      i--;
     }
   }
 
   swapTurn = () => {
     this.turnPlayer = this.turnPlayer == 'white' ? 'black' : 'white';
   }
-}
 
-//TODO pull in helper file
-Inquirer.prompt([
-  {
-    type: 'input',
-    name: 'move',
-    message: 'Whats your move ?'.cyan,
-    choices: ['apple', 'banana', 'kiwi']
+  promptNextMove = () => {
+    return Inquirer.prompt([
+      {
+        type: 'input',
+        name: 'move',
+        message: 'Enter your move'.cyan,
+        choices: ['p3']
+      }
+    ]).then(data => data.move.toLowerCase())
+    .catch(err => console.log(`Error ${err}`));
   }
-]).then(function(data) {
-  const response = data.move.toUpperCase();
-  console.log(response, response == 'APPLE');
-}).catch(function(err) { 
-  console.log("oops", err);
-})
-
+}
+new Game().play();

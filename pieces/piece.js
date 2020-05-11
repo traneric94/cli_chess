@@ -1,3 +1,5 @@
+import Colors from 'colors';
+
 export default class Piece {
   constructor(board, color, position) {
     this.board = board;
@@ -6,16 +8,14 @@ export default class Piece {
     board.addPiece(this);
   }
 
-  symbol = () => {
-    throw new NotImplementedError();
-  }
-
-  toString() {
-    throw new NotImplementedError();
+  toString = () => {
+    Colors.setTheme({custom: [this.color]});
+    return this.symbol.custom;
   }
 
   willBeInCheck(targetPosition) {
     const testBoard = Board.clone(this.board);
     testBoard.movePiece(position, targetPosition);
-    testBoard.isInCheck(color);
+    testBoard.isInCheck(this.color);
+  }
 }

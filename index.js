@@ -13,7 +13,7 @@ class Game {
   }
 
   play = async () => {
-    let i = 2;
+    let i = 1;
     while (i > 0) { //until checkmate
       //prompt move
       //const result = await this.promptNextMove();

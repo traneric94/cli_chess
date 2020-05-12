@@ -12,7 +12,8 @@
   "dependencies": {
     "colors": "^1.4.0",
     "inquirer": "^7.1.0",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "use-strict": "^1.0.1"
   },
   "devDependencies": {
     "strict-mode": "^1.1.4"

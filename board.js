@@ -1,5 +1,15 @@
 import NullPiece from './pieces/nullPiece.js';
 import Pawn from './pieces/pawn.js';
+import Knight from './pieces/steppingPieces/knight.js';
+import Rook from './pieces/slidingPieces/rook.js';
+import Bishop from './pieces/slidingPieces/bishop.js';
+import Queen from './pieces/slidingPieces/queen.js';
+import King from './pieces/steppingPieces/king.js';
+import { 
+  GREEN,
+  RED,
+  SPECIALISTS,
+} from './constants/constants.js';
 
 export class Board {
   constructor(shouldFill = true) {
@@ -19,11 +29,21 @@ export class Board {
         this.grid[i][j] = this.nullPiece;
       }
     }
+    this.fillPawns();
+    this.fillSpecialists();
+  }
 
-    // fill pawns
+  fillPawns = () => {
     for (let i = 0; i < 8; i++) {
-      this.grid[1][i] = new Pawn(this, 'red', [6, i]);
-      this.grid[6][i] = new Pawn(this, 'green', [6, i]);
+      this.grid[1][i] = new Pawn(this, RED, [6, i]);
+      this.grid[6][i] = new Pawn(this, GREEN, [6, i]);
+    }
+  }
+
+  fillSpecialists = () => {
+    for (let i = 0; i < 8; i++) {
+      this.grid[0][i] = eval(`new ${SPECIALISTS[i]}(this, RED, [0,i])`);
+      this.grid[7][i] = eval(`new ${SPECIALISTS[i]}(this, GREEN, [7,i])`);
     }
   }
 

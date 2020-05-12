@@ -10,7 +10,7 @@ import {
   RED,
   SPECIALISTS,
 } from './constants/constants.js';
-
+import { InvalidMoveError } from './errors/invalidMoveError.js';
 export class Board {
   constructor(shouldFill = true) {
     this.grid = new Array(8);
@@ -53,5 +53,8 @@ export class Board {
     }, '');
   }
   addPiece = () => {};
-
+  isValidMove = () => {};
+  makeMove = () => {
+    throw new InvalidMoveError('Can\'t make that move');
+  }
 }

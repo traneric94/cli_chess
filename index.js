@@ -16,8 +16,14 @@ class Game {
     let i = 1;
     while (i > 0) { //until checkmate
       //prompt move
-      //const result = await this.promptNextMove();
-      // make move
+      try {
+      const result = await this.promptNextMove();
+      // check validity of move
+      this.board.makeMove();
+      
+      } catch (e) {
+        console.log(e.message.yellow);
+      }
       // move piece
       // swap turn
       this.swapTurn();

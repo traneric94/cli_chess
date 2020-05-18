@@ -19,11 +19,11 @@ export const SPECIALISTS = [
   ROOK
 ];
 
-const PIECE_SHORTHAND = {
+export const PIECE_SHORTHAND = {
   p: PAWN,
   r: ROOK,
   k: KNIGHT,
   b: BISHOP,
   q: QUEEN,
   k: KING,
-}
+};

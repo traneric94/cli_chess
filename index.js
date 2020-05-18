@@ -1,7 +1,5 @@
 import { Board } from './board.js';
-import  Inquirer  from 'inquirer';
-import Colors from 'colors';
-
+import MovePrompter from './movePrompter.js';
 
 class Game {
   constructor() {
@@ -9,7 +7,7 @@ class Game {
     this.board = new Board();
     // display to pretty print to CLI
     // players
-    this.currentPlayer = 'white';
+    this.turnColor = 'white';
   }
 
   play = async () => {
@@ -17,9 +15,8 @@ class Game {
     while (i > 0) { //until checkmate
       //prompt move
       try {
-      const result = await this.promptNextMove();
-      // check validity of move
-      this.board.makeMove();
+      const {startPosition, endPosition } = await MovePrompter.promptNextMove();
+      //this.board.makeMove(this.turnColor, startPosition, endPosition);
       
       } catch (e) {
         console.log(e.message.yellow);
@@ -29,7 +26,6 @@ class Game {
       this.swapTurn();
       // notify players
       console.log(this.board.toString());
-      //
       i--;
     }
   }
@@ -38,16 +34,5 @@ class Game {
     this.turnPlayer = this.turnPlayer == 'white' ? 'black' : 'white';
   }
 
-  promptNextMove = () => {
-    return Inquirer.prompt([
-      {
-        type: 'input',
-        name: 'move',
-        message: 'Enter your move'.cyan,
-        choices: ['p3']
-      }
-    ]).then(data => data.move.toLowerCase())
-    .catch(err => console.log(`Error ${err}`));
-  }
 }
 new Game().play();

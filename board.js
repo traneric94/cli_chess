@@ -53,8 +53,15 @@ export class Board {
     }, '');
   }
   addPiece = () => {};
-  isValidMove = () => {};
-  makeMove = () => {
-    throw new InvalidMoveError('Can\'t make that move');
+  isValidMove = (turnColor, startPosition, endPosition) => {
+    if (this.isEmptyCell(startPosition)) throw new InvalidMoveError('Starting position is empty');
+    const piece = this.grid[startPosition.x, startPosition.y];
+    if (piece.color !== turnColor) throw new InvalidMoveError('Wrong color');
+    if (!piece.moves.includes(endPosition)) throw new InvalidMoveError('Invalid move.');
+    if (piece.movedIntoCheck(endPosition)) throw new InvalidMoveError('In check');
+  };
+  makeMove = (turnColor, startPosition, endPosition) => {
+    this.isValidMove(turnColor, startPosition, endPosition);
   }
+  isEmptyCell = ([x, y]) => this.grid[x][y] === this.nullPiece
 }

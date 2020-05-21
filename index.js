@@ -1,5 +1,6 @@
-import { Board } from './board.js';
+import Board from './board.js';
 import MovePrompter from './movePrompter.js';
+import MoveValidator from './moveValidator.js';
 
 class Game {
   constructor() {
@@ -15,9 +16,10 @@ class Game {
     while (i > 0) { //until checkmate
       //prompt move
       try {
-      const {startPosition, endPosition } = await MovePrompter.promptNextMove();
-      //this.board.makeMove(this.turnColor, startPosition, endPosition);
-      
+      // const { destinationRank, destinationFile, piece } = await MovePrompter.promptNextMove();
+      const { endPosition, piece } = MovePrompter.validateInput('TODO');
+      this.board.makeMove(this.turnColor, piece, endPosition);
+
       } catch (e) {
         console.log(e.message.yellow);
       }

@@ -20,10 +20,11 @@ export const SPECIALISTS = [
 ];
 
 export const PIECE_SHORTHAND = {
-  p: PAWN,
-  r: ROOK,
-  k: KNIGHT,
-  b: BISHOP,
-  q: QUEEN,
-  k: KING,
+  '': PAWN,
+  R: ROOK,
+  K: KNIGHT,
+  B: BISHOP,
+  Q: QUEEN,
+  K: KING,
 };
+

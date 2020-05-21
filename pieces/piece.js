@@ -5,7 +5,6 @@ export default class Piece {
     this.board = board;
     this.color = color;
     this.position = position;
-    board.addPiece(this);
   }
 
   toString = () => {

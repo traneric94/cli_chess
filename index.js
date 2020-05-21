@@ -1,6 +1,5 @@
 import Board from './board.js';
 import MovePrompter from './movePrompter.js';
-import MoveValidator from './moveValidator.js';
 
 class Game {
   constructor() {
